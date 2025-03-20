@@ -1,0 +1,373 @@
+/* Základné nastavenia */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Hlavička */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+/* Tlačidlá */
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 15px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #e0e0e0;
+}
+
+.btn.primary {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #3e8e41;
+}
+
+.btn.primary:hover {
+    background-color: #3e8e41;
+}
+
+.btn.small {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+/* Hlavná sekcia */
+.main-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Vstupná sekcia */
+.input-section {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.construction-type {
+    margin-bottom: 20px;
+}
+
+.construction-type select {
+    padding: 8px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Okrajové podmienky */
+.boundary-conditions {
+    margin-bottom: 20px;
+}
+
+.boundary-grid {
+    display: flex;
+    gap: 20px;
+}
+
+.condition-panel {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+}
+
+.condition-item {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.condition-item label {
+    width: 180px;
+    font-weight: bold;
+}
+
+.condition-item input {
+    width: 80px;
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: right;
+}
+
+/* Sekcia materiálov */
+.materials-section {
+    margin-bottom: 20px;
+}
+
+.materials-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.materials-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+.materials-table th,
+.materials-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.materials-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.materials-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.materials-table tr:hover {
+    background-color: #f0f0f0;
+}
+
+.materials-table input {
+    width: 90%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    text-align: right;
+}
+
+.materials-table input[type="text"] {
+    text-align: left;
+}
+
+.material-actions {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.material-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.material-actions .move-up {
+    color: #555;
+}
+
+.material-actions .move-down {
+    color: #555;
+}
+
+.material-actions .remove {
+    color: #d9534f;
+}
+
+.material-actions button:hover {
+    background-color: #eee;
+}
+
+/* Sekcia výsledkov */
+.results-section {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.results-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.result-panel {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+}
+
+.result-panel h3 {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.result-value {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Tabuľka hodnotenia */
+.assessment-container {
+    margin-top: 20px;
+}
+
+.assessment-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.assessment-table th,
+.assessment-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.assessment-table th {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+.assessment-table td:first-child {
+    font-weight: bold;
+}
+
+.assessment-result {
+    font-weight: bold;
+    text-align: center;
+}
+
+.assessment-result.positive {
+    color: green;
+}
+
+.assessment-result.negative {
+    color: red;
+}
+
+/* Modálne okno */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 400px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.export-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.export-options h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Tlačová stránka */
+#print-page {
+    background-color: white;
+}
+
+/* Responzívne zobrazenie */
+@media (max-width: 768px) {
+    .boundary-grid {
+        flex-direction: column;
+    }
+    
+    .results-container {
+        grid-template-columns: 1fr;
+    }
+    
+    header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .actions {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    
+    .btn {
+        flex: 1;
+    }
+}

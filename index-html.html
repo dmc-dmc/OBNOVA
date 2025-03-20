@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tepelnotechnická kalkulačka</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tepelnotechnická kalkulačka</h1>
+            <div class="actions">
+                <button id="save-button" class="btn">Uložiť</button>
+                <button id="load-button" class="btn">Načítať</button>
+                <button id="reset-button" class="btn">Resetovať</button>
+                <button id="calculate-button" class="btn primary">Vypočítať</button>
+                <button id="export-button" class="btn">Export</button>
+            </div>
+        </header>
+
+        <div class="main-section">
+            <div class="input-section">
+                <div class="construction-type">
+                    <h2>Typ konštrukcie</h2>
+                    <select id="construction-type">
+                        <option value="wall">Stena</option>
+                        <option value="roof">Strecha</option>
+                        <option value="floor" selected>Podlaha na strope</option>
+                    </select>
+                </div>
+
+                <div class="boundary-conditions">
+                    <h2>Okrajové podmienky</h2>
+                    <div class="boundary-grid">
+                        <div class="condition-panel">
+                            <h3>Vnútorné podmienky</h3>
+                            <div class="condition-item">
+                                <label for="internal-temp">Teplota (θi):</label>
+                                <input type="number" id="internal-temp" value="20" step="0.1"> °C
+                            </div>
+                            <div class="condition-item">
+                                <label for="internal-humidity">Rel. vlhkosť (φi):</label>
+                                <input type="number" id="internal-humidity" value="50"> %
+                            </div>
+                            <div class="condition-item">
+                                <label for="internal-thermal-resistance">Tepelný odpor (Rsi):</label>
+                                <input type="number" id="internal-thermal-resistance" value="0.17" step="0.01"> m²·K/W
+                            </div>
+                        </div>
+                        <div class="condition-panel">
+                            <h3>Vonkajšie podmienky</h3>
+                            <div class="condition-item">
+                                <label for="external-temp">Teplota (θe):</label>
+                                <input type="number" id="external-temp" value="2.5" step="0.1"> °C
+                            </div>
+                            <div class="condition-item">
+                                <label for="external-humidity">Rel. vlhkosť (φe):</label>
+                                <input type="number" id="external-humidity" value="80"> %
+                            </div>
+                            <div class="condition-item">
+                                <label for="external-thermal-resistance">Tepelný odpor (Rse):</label>
+                                <input type="number" id="external-thermal-resistance" value="0.17" step="0.01"> m²·K/W
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="materials-section">
+                    <h2>Materiály</h2>
+                    <div class="materials-actions">
+                        <button id="add-material-button" class="btn small">Pridať materiál</button>
+                        <button id="import-csv-button" class="btn small">Import CSV</button>
+                        <input type="file" id="csv-file-input" accept=".csv,.txt" style="display: none;">
+                    </div>
+                    <table class="materials-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Názov materiálu</th>
+                                <th>Hrúbka<br>(d) [m]</th>
+                                <th>Obj. hmotnosť<br>(ρ) [kg/m³]</th>
+                                <th>Súč. tep. vodivosti<br>(λ) [W/(m·K)]</th>
+                                <th>Merná tep. kapacita<br>(c) [J/(kg·K)]</th>
+                                <th>Faktor dif. odporu<br>(μ) [-]</th>
+                                <th>Akcie</th>
+                            </tr>
+                        </thead>
+                        <tbody id="material-rows">
+                            <!-- JS generuje riadky -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="results-section" id="results-section">
+                <h2>Výsledky výpočtu</h2>
+                <div class="results-container">
+                    <div class="result-panel">
+                        <h3>Tepelný odpor konštrukcie</h3>
+                        <div class="result-value" id="thermal-resistance">-</div>
+                    </div>
+                    <div class="result-panel">
+                        <h3>Difúzny odpor konštrukcie</h3>
+                        <div class="result-value" id="diffusion-resistance">-</div>
+                    </div>
+                    <div class="result-panel">
+                        <h3>Súčiniteľ prechodu tepla</h3>
+                        <div class="result-value" id="heat-transfer-coefficient">-</div>
+                    </div>
+                    <div class="result-panel">
+                        <h3>Vnútorná povrchová teplota</h3>
+                        <div class="result-value" id="surface-temperature">-</div>
+                    </div>
+                    <div class="result-panel">
+                        <h3>Vlhkostný režim</h3>
+                        <div class="result-value" id="moisture-mode">-</div>
+                    </div>
+                    <div class="result-panel">
+                        <h3>Tepelná prijímavosť podlahy</h3>
+                        <div class="result-value" id="thermal-admittance">-</div>
+                    </div>
+                    <div class="result-panel">
+                        <h3>Pokles dotykovej teploty podlahy</h3>
+                        <div class="result-value" id="temperature-drop">-</div>
+                    </div>
+                </div>
+
+                <div class="assessment-container">
+                    <h2>Hodnotenie konštrukcie</h2>
+                    <table class="assessment-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Hodnota</th>
+                                <th>Hodnotenie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tepelný odpor</td>
+                                <td id="thermal-resistance-assessment">-</td>
+                                <td class="assessment-result" id="thermal-resistance-result">-</td>
+                            </tr>
+                            <tr>
+                                <td>Súčiniteľ prechodu tepla</td>
+                                <td id="heat-transfer-coefficient-assessment">-</td>
+                                <td class="assessment-result" id="heat-transfer-coefficient-result">-</td>
+                            </tr>
+                            <tr>
+                                <td>Riziko vzniku plesní</td>
+                                <td id="mold-risk-assessment">-</td>
+                                <td class="assessment-result" id="mold-risk-result">-</td>
+                            </tr>
+                            <tr>
+                                <td>Tepelná prijímavosť</td>
+                                <td id="thermal-admittance-assessment">-</td>
+                                <td class="assessment-result" id="thermal-admittance-result">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modálne okno pre export -->
+    <div id="export-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="export-options">
+                <h2>Export výsledkov</h2>
+                <button id="export-print-button" class="btn">Tlačiť</button>
+                <button id="export-csv-button" class="btn">Export CSV</button>
+                <button id="export-json-button" class="btn">Export JSON</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stránka pre export na tlač -->
+    <div id="print-page" style="display: none;">
+        <!-- Obsah pre tlač sa vygeneruje dynamicky -->
+    </div>
+
+    <!-- JS súbory -->
+    <script src="materials.js"></script>
+    <script src="calculations.js"></script>
+    <script src="ui.js"></script>
+    <script src="storage.js"></script>
+    <script src="export.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

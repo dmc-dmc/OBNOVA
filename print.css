@@ -1,0 +1,189 @@
+/* Štýly pre tlačovú verziu */
+@page {
+    size: A4;
+    margin: 10mm;
+}
+
+body {
+    background-color: white;
+    font-family: Arial, sans-serif;
+    color: black;
+    font-size: 11pt;
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+/* Container pre dokument */
+.print-container {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 10mm;
+    box-sizing: border-box;
+}
+
+/* Nadpis dokumentu */
+.print-title {
+    font-size: 14pt;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10mm;
+}
+
+/* Hlavná tabuľka */
+.print-main-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid black;
+    margin-bottom: 5mm;
+}
+
+/* Názov konštrukcie */
+.print-construction-name {
+    font-weight: bold;
+    text-align: center;
+    padding: 2mm;
+    border-bottom: 2px solid black;
+    background-color: #f0f0f0;
+}
+
+/* Sekcia s podmienkami a vrstvami */
+.print-construction-details {
+    padding: 5mm;
+}
+
+/* Grid pre podmienky a schému */
+.print-boundary-conditions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5mm;
+}
+
+/* Panely podmienok */
+.print-condition-panel {
+    width: 48%;
+    border: 1px solid black;
+    padding: 2mm;
+    box-sizing: border-box;
+}
+
+.print-condition-panel h3 {
+    font-size: 11pt;
+    color: brown !important;
+    text-align: center;
+    margin-bottom: 3mm;
+}
+
+.print-condition-item {
+    margin: 1mm 0;
+}
+
+/* Tabuľka materiálov */
+.print-materials-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 5mm;
+}
+
+.print-materials-table th, 
+.print-materials-table td {
+    border: 1px solid black;
+    padding: 1mm 2mm;
+    text-align: center;
+    font-size: 10pt;
+}
+
+.print-materials-table th {
+    background-color: #f0f0f0;
+}
+
+.print-materials-table .symbol-row td,
+.print-materials-table .unit-row td {
+    background-color: #f9f9f9;
+    font-style: italic;
+}
+
+/* Sekcia výsledkov */
+.print-results {
+    border: 1px solid black;
+    padding: 3mm;
+    margin-bottom: 5mm;
+}
+
+.print-results h3 {
+    font-size: 11pt;
+    color: #004080 !important;
+    text-align: center;
+    margin-bottom: 3mm;
+}
+
+.print-result-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 1mm 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1mm;
+}
+
+.print-result-label {
+    font-weight: bold;
+}
+
+/* Tabuľka hodnotenia */
+.print-assessment {
+    margin-top: 5mm;
+}
+
+.print-assessment h3 {
+    font-size: 11pt;
+    color: #004080 !important;
+    text-align: center;
+    margin-bottom: 3mm;
+}
+
+.print-assessment-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.print-assessment-table th,
+.print-assessment-table td {
+    border: 1px solid black;
+    padding: 2mm;
+}
+
+.print-assessment-table th {
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+.print-assessment-table td:first-child {
+    font-weight: bold;
+    width: 25%;
+}
+
+.assessment-positive {
+    color: green !important;
+    font-weight: bold;
+}
+
+.assessment-negative {
+    color: red !important;
+    font-weight: bold;
+}
+
+/* Schéma konštrukcie */
+.print-construction-image {
+    width: 100%;
+    height: auto;
+    margin: 5mm 0;
+}
+
+/* Tlačidlá a ovládacie prvky - skryť pre tlač */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+}
